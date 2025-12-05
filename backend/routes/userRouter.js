@@ -16,7 +16,7 @@ router.post("/auth/signup", registerUser);
 router.post("/auth/login", loginUser);
 
 // Protected routes
-router.get("/users/", requireAuth, getAllUsers);
+router.get("/users", requireAuth, getAllUsers);
 router.get("/users/:userId", requireAuth, getUserById);
 router.put("/users/:userId", requireAuth, updateUser);
 router.delete("/users/:userId", requireAuth, deleteUser);
