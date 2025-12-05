@@ -11,6 +11,7 @@ const { unknownEndpoint, errorHandler } = require("./middleware/customMiddleware
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use(express.static('view')); // Serve static files from 'view'
 
 if (process.env.NODE_ENV !== "test") {
   connectDB();
@@ -20,7 +21,13 @@ if (process.env.NODE_ENV !== "test") {
 app.use("/api/jobs", jobRouter);
 app.use("/api", userRouter);
 
-app.use(unknownEndpoint);
+app.use("/api", unknownEndpoint);
 app.use(errorHandler);
+
+// Fallback: for any route not handled by API or static files,
+// send back index.html from the 'view' folder
+app.use((req, res) => {
+  res.sendFile(__dirname + '/view/index.html');
+});
 
 module.exports = app;
