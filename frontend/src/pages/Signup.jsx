@@ -14,7 +14,7 @@ const Signup = ({ setIsAuthenticated }) => {
   const city = useField("text");
   const zipCode = useField("text");
 
-  const { signup, error } = useSignup("/api/auth/signup");
+  const { signup, error } = useSignup("/api/users/signup");
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
