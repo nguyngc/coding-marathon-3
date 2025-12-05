@@ -9,6 +9,7 @@ const cors = require("cors");
 // Middlewares
 app.use(cors())
 app.use(express.json());
+app.use(express.static('view')); // Serve static files from 'view'
 
 if (process.env.NODE_ENV !== "test") {
   connectDB();
@@ -20,8 +21,12 @@ app.use("/api/jobs", jobRouter);
 app.use(unknownEndpoint);
 app.use(errorHandler);
 
+app.use((req, res) => {
+  res.sendFile(__dirname + '/view/index.html');
+});
+
 module.exports = app;
 
 // app.listen(process.env.PORT, () => {
 //   console.log(`Server running on port ${process.env.PORT}`)
-// })  
+// })
