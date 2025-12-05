@@ -14,7 +14,7 @@ const Signup = ({ setIsAuthenticated }) => {
   const city = useField("text");
   const zipCode = useField("text");
 
-  const { signup, error } = useSignup("/api/users/signup");
+  const { signup, error } = useSignup("/api/auth/signup");
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
@@ -26,9 +26,9 @@ const Signup = ({ setIsAuthenticated }) => {
       gender: gender.value,
       date_of_birth: dateOfBirth.value,
       address: {
-        street: addressStreet,
-        city: city,
-        zipCode: zipCode
+        street: addressStreet.value,
+        city: city.value,
+        zipCode: zipCode.value
       }
     });
     console.log(result);
