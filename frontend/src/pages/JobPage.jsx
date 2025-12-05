@@ -75,9 +75,9 @@ const JobPage = () => {
           <p>State: {job.location.state}</p>
           <p>Salary: {job.salary}</p>
           <p>Experience Level: {job.experienceLevel}</p>
-          <p>Posted Date: {job.postedDate}</p>
+          <p>Posted Date: {new Date(job.postedDate).toLocaleDateString("vi-VN")}</p>
           <p>Status: {job.status}</p>
-          <p>Application Deadline: {job.applicationDeadline}</p>
+          <p>Application Deadline: {new Date(job.applicationDeadline).toLocaleDateString("vi-VN")}</p>
           <p>Requirements: {job.requirements}</p>
 
           <button onClick={() => onDeleteClick(job._id)}>delete</button>
