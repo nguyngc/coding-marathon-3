@@ -18,7 +18,8 @@ if (process.env.NODE_ENV !== "test") {
 // Use the jobRouter for all "/jobs" routes
 app.use("/api/jobs", jobRouter);
 
-app.use(unknownEndpoint);
+// app.use(unknownEndpoint);
+app.use('/api', unknownEndpoint);
 app.use(errorHandler);
 
 app.use((req, res) => {
