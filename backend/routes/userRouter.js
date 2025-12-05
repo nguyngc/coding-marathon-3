@@ -12,8 +12,8 @@ const {
 const { requireAuth } = require("../middleware/authMiddleware");
 
 // Auth routes
-router.post("/register", registerUser);
-router.post("/login", loginUser);
+router.post("/auth/singup", registerUser);
+router.post("/auth/login", loginUser);
 
 // Protected routes
 router.get("/", requireAuth, getAllUsers);
