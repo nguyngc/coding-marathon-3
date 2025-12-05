@@ -8,8 +8,8 @@ const {
 
 router.get("/", getAll);
 router.post("/", create);
-router.get("/:jobId", getById);
-router.put("/:jobId", update);
-router.delete("/:jobId", remove);
+router.get("/:id", getById);
+router.put("/:id", update);
+router.delete("/:id", remove);
 
 module.exports = router;

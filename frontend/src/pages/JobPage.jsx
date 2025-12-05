@@ -8,10 +8,6 @@ const JobPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const { title, type, description, company: { name, contactEmail, size },
-    location: { city, state }, salary, experienceLevel, postedDate, status,
-    applicationDeadline, requirements } = job;
-
   const deleteJob = async (id) => {
     try {
       const res = await fetch(`/api/jobs/${id}`, {
@@ -33,6 +29,7 @@ const JobPage = () => {
           throw new Error("Network response was not ok");
         }
         const data = await res.json();
+        console.log(data);
         setJob(data);
       } catch (err) {
         setError(err.message);
@@ -66,22 +63,22 @@ const JobPage = () => {
         <p>{error}</p>
       ) : (
         <>
-          <h2>{title}</h2>
-          <p>Type: {type}</p>
-          <p>Description: {description}</p>
+          <h2>{job.title}</h2>
+          <p>Type: {job.type}</p>
+          <p>Description: {job.description}</p>
           <p>Company: </p>
-          <p>Name: {name}</p>
-          <p>Contact Email: {contactEmail}</p>
-          <p>size: {size}</p>
+          <p>Name: {job.company?.name}</p>
+          <p>Contact Email: {job.company?.contactEmail}</p>
+          <p>size: {job.company?.size}</p>
           <p>Location:</p>
-          <p>City: {city}</p>
-          <p>State: {state}</p>
-          <p>Salary: {salary}</p>
-          <p>ExperienceLevel: {experienceLevel}</p>
-          <p>PostedDate: {postedDate}</p>
-          <p>Status: {status}</p>
-          <p>ApplicationDeadline: {applicationDeadline}</p>
-          <p>Requirements: {requirements}</p>
+          <p>City: {job.location.city}</p>
+          <p>State: {job.location.state}</p>
+          <p>Salary: {job.salary}</p>
+          <p>Experience Level: {job.experienceLevel}</p>
+          <p>Posted Date: {job.postedDate}</p>
+          <p>Status: {job.status}</p>
+          <p>Application Deadline: {job.applicationDeadline}</p>
+          <p>Requirements: {job.requirements}</p>
 
           <button onClick={() => onDeleteClick(job._id)}>delete</button>
           <button onClick={() => onEditClick(job._id)}>edit</button>
