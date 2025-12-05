@@ -12,13 +12,13 @@ const {
 const { requireAuth } = require("../middleware/authMiddleware");
 
 // Auth routes
-router.post("/auth/singup", registerUser);
+router.post("/auth/signup", registerUser);
 router.post("/auth/login", loginUser);
 
 // Protected routes
-router.get("/", requireAuth, getAllUsers);
-router.get("/:userId", requireAuth, getUserById);
-router.put("/:userId", requireAuth, updateUser);
-router.delete("/:userId", requireAuth, deleteUser);
+router.get("/users/", requireAuth, getAllUsers);
+router.get("/users/:userId", requireAuth, getUserById);
+router.put("/users/:userId", requireAuth, updateUser);
+router.delete("/users/:userId", requireAuth, deleteUser);
 
 module.exports = router;
