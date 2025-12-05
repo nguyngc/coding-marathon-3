@@ -12,7 +12,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-connectDB();
+if (process.env.NODE_ENV !== "test") {
+  connectDB();
+}
+ 
+// Use the jobRouter for all "/jobs" routes
 app.use("/api/jobs", jobRouter);
 app.use("/api/users", userRouter);
 
