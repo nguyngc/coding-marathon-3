@@ -6,7 +6,9 @@ const MONGO_URI =
     ? process.env.TEST_MONGO_URI
     : process.env.MONGO_URI;
 
+const SECRET = process.env.JWT_SECRET;
 module.exports = {
   MONGO_URI,
   PORT,
+  SECRET,
 };
