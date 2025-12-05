@@ -49,7 +49,6 @@ describe("API V1 - Jobs CRUD (no auth) - match current implementation", () => {
     expect(res.body.title).toBe("Software Engineer");
   });
 
-  // ✅ current errorHandler returns 500 for validation errors
   test("POST /api/jobs should reject missing required fields (currently 500)", async () => {
     const res = await request(app).post("/api/jobs").send({
       title: "Only title",
@@ -58,7 +57,6 @@ describe("API V1 - Jobs CRUD (no auth) - match current implementation", () => {
     expect(res.status).toBe(500);
   });
 
-  // ✅ current errorHandler returns 500 for enum validation errors
   test("POST /api/jobs should reject invalid experienceLevel (currently 500)", async () => {
     const res = await request(app)
       .post("/api/jobs")
@@ -83,7 +81,6 @@ describe("API V1 - Jobs CRUD (no auth) - match current implementation", () => {
     expect(res.body.length).toBe(2);
   });
 
-  // ✅ if your GET by id currently returns 400, test it that way
   test("GET /api/jobs/:id currently returns 400", async () => {
     const created = await Job.create(validJob());
 
@@ -97,7 +94,6 @@ describe("API V1 - Jobs CRUD (no auth) - match current implementation", () => {
     expect(res.status).toBe(400);
   });
 
-  // ✅ current behavior seems 400 instead of 404
   test("GET /api/jobs/:id currently returns 400 even when not found", async () => {
     const fakeId = "507f191e810c19729de860ea";
     const res = await request(app).get(`/api/jobs/${fakeId}`);
@@ -105,7 +101,6 @@ describe("API V1 - Jobs CRUD (no auth) - match current implementation", () => {
     expect(res.status).toBe(400);
   });
 
-  // ✅ update currently returns 400
   test("PUT /api/jobs/:id currently returns 400", async () => {
     const created = await Job.create(validJob());
 
@@ -116,7 +111,6 @@ describe("API V1 - Jobs CRUD (no auth) - match current implementation", () => {
     expect(res.status).toBe(400);
   });
 
-  // cái này log bạn đang PASS với 400, cứ giữ 400
   test("PUT /api/jobs/:id should reject invalid status", async () => {
     const created = await Job.create(validJob());
 
