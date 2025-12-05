@@ -18,7 +18,7 @@ const Signup = ({ setIsAuthenticated }) => {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    await signup({
+    const result = await signup({
       name: name.value,
       username: username.value,
       password: password.value,
@@ -31,6 +31,7 @@ const Signup = ({ setIsAuthenticated }) => {
         zipCode: zipCode
       }
     });
+    console.log(result);
     if (!error) {
       console.log("success");
       setIsAuthenticated(true);
