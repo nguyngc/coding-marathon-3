@@ -1,7 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-const JobPage = (isAuthenticated) => {
+const JobPage = ({ isAuthenticated }) => {
   const navigate = useNavigate();
   const { id } = useParams();
   const [job, setJob] = useState(null);
@@ -10,8 +10,10 @@ const JobPage = (isAuthenticated) => {
 
   const deleteJob = async (id) => {
     try {
+      const currentUser = JSON.parse(localStorage.getItem("user"));
       const res = await fetch(`/api/jobs/${id}`, {
-        method: "DELETE"
+        method: "DELETE",
+        headers: { "Authorization": `Bearer ${currentUser?.token}` }
       });
       if (!res.ok) {
         throw new Error("Failed to delete job");
