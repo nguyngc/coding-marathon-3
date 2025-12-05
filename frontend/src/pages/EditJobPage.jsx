@@ -100,7 +100,7 @@ const EditJobPage = () => {
             experienceLevel,
             status,
             applicationDeadline,
-            requirements: requirements.split(","),
+            requirements: requirements,
         };
 
         const success = await updateJob(updatedJob);
@@ -153,7 +153,7 @@ const EditJobPage = () => {
                     <input
                         type="text"
                         required
-                        value={contactEmail}
+                        value={companyContactEmail}
                         onChange={(e) => setContactEmail(e.target.value)}
                     />
                     <label>Size:</label>

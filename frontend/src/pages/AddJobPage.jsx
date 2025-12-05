@@ -53,7 +53,7 @@ const AddJobPage = () => {
       experienceLevel,
       status,
       applicationDeadline,
-      requirements: requirements.split(","), 
+      requirements: requirements,
     };
 
     addJob(newJob);
