@@ -1,18 +1,19 @@
 const express = require("express");
-const {
-  getAllJobs,
-  getJobById,
-  createJob,
-  updateJob,
-  deleteJob,
-} = require("../controllers/jobControllers");
-
 const router = express.Router();
 
-router.get("/", getAllJobs);
-router.post("/", createJob);
-router.get("/:jobId", getJobById);
-router.put("/:jobId", updateJob);
-router.delete("/:jobId", deleteJob);
+const {
+  getAll, getById, create, update, remove
+} = require("../controllers/jobControllers");
+
+const { requireAuth } = require("../middleware/authMiddleware");
+
+// Public reads
+router.get("/", getAll);
+router.get("/:id", getById);
+
+// Protected writes
+router.post("/", requireAuth, create);
+router.put("/:id", requireAuth, update);
+router.delete("/:id", requireAuth, remove);
 
 module.exports = router;
